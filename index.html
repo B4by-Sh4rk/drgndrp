@@ -459,12 +459,14 @@ ech.onmousedown = function(event) {
 };
 
 function enterDroppable(elem) {
+    document.querySelector('.krb1_zone').style.opacity = '0';
     elem.style.opacity = '1';
     if(elem.classList.contains("krb3_zone")){
         document.querySelector('.msg').classList.add('show_msg')
     }
 }
 function leaveDroppable(elem) {
+    document.querySelector('.krb1_zone').style.opacity = '1';
   elem.style.opacity = '0';
   if(elem.classList.contains("krb3_zone")){
         document.querySelector('.msg').classList.remove('show_msg')
