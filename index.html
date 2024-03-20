@@ -143,7 +143,8 @@
             height: 110px;
             position: absolute;
             top: 15.8vh;
-            left: 6vw;
+            left: 0;
+            padding-left: 79px;
             opacity: 0;
         }
         #ech{
@@ -204,7 +205,7 @@
 
     <div class="main" id="test_3_div">
         <img id="ech" src="./echpochmak.png" alt="">
-        <div class="droppable krb_zone krb1_zone">
+        <div class="droppable krb_zone krb1_zone" id="krb1_zone">
             <img id="krb1" src="./krb1.png" alt="">
         </div>
         <div class="droppable krb_zone krb2_zone">
@@ -459,14 +460,16 @@ ech.onmousedown = function(event) {
 };
 
 function enterDroppable(elem) {
-    document.querySelector('.krb1_zone').style.opacity = '0';
+    document.getElementById('krb1_zone').style.opacity = '0';
+    console.log(krb1_zone)
     elem.style.opacity = '1';
     if(elem.classList.contains("krb3_zone")){
+        document.getElementById('krb1_zone').style.opacity = '0';
         document.querySelector('.msg').classList.add('show_msg')
     }
 }
 function leaveDroppable(elem) {
-    document.querySelector('.krb1_zone').style.opacity = '1';
+    document.getElementById('krb1_zone').style.opacity = '1';
   elem.style.opacity = '0';
   if(elem.classList.contains("krb3_zone")){
         document.querySelector('.msg').classList.remove('show_msg')
