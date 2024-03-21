@@ -46,8 +46,8 @@ function moveThumb(positionX) {
     let newLeft = positionX - slider.getBoundingClientRect().left;
     let rightEdge = slider.offsetWidth - thumb.offsetWidth;
 
-    if (newLeft < 10) {
-        newLeft = 10;
+    if (newLeft < 2) {
+        newLeft = 2;
     }
     if (newLeft > rightEdge) {
         newLeft = rightEdge;
@@ -55,10 +55,10 @@ function moveThumb(positionX) {
 
     thumb.style.left = newLeft + 'px';
 
-    let filledPercentage = Math.round((newLeft - 10) / (rightEdge - 10) * 100);
+    let filledPercentage = Math.round((newLeft - 2) / (rightEdge - 2) * 100);
 
     if (filledPercentage === 100) {
-        thumb.style.left = rightEdge - 10 + 'px'; // перемещаем бегунок на 10 пикселей левее при 100%, чтобы было ровно
+        thumb.style.left = rightEdge - 2 + 'px'; // перемещаем бегунок на 10 пикселей левее при 100%, чтобы было ровно
     }
 
     h1Element.textContent = filledPercentage + '%';
