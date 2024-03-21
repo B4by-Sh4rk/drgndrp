@@ -1,0 +1,160 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+body {
+    height: 100vh;
+    height: calc(var(--vh, 1vh)* 100);
+    margin: 0 auto;
+}
+.nav{
+    display: flex;
+    width: 100vw;
+    justify-content: space-around;
+    align-items: center;
+    height: 8%;
+    background: #f1f1cf;
+    font-weight: 900;
+    font-size: 24px;
+}
+.nav li:hover{
+    color: red;
+}
+.main{
+    width: 100vw;
+    height: 92%;
+    background: grey;
+}
+#test_1_div{
+    display: none;
+}
+#test_2_div{
+    display: none;
+}
+#test_3_div{
+    display: none;
+}
+
+
+.slider {
+    border-radius: 5px;
+    background: #E0E0E0;
+    background: linear-gradient(left top, #E0E0E0, #EEEEEE);
+    width: 310px;
+    height: 15px;
+    margin: 5px;
+}
+
+.thumb {
+    width: 10px;
+    height: 25px;
+    border-radius: 3px;
+    position: relative;
+    left: 10px;
+    top: -5px;
+    background: blue;
+    cursor: pointer;
+}
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+
+
+#field {
+background: url(https://js.cx/drag-heroes/field.png);
+width: 800px;
+height: 600px;
+float: left;
+}
+
+/* герои и мяч (переносимые элементы) */
+
+.hero {
+background: url(https://js.cx/drag-heroes/heroes.png);
+width: 130px;
+height: 128px;
+float: left;
+}
+
+#hero1 {
+background-position: 0 0;
+}
+
+#hero2 {
+background-position: 0 -128px;
+}
+
+#hero3 {
+background-position: -120px 0;
+}
+
+#hero4 {
+background-position: -125px -128px;
+}
+
+#hero5 {
+background-position: -248px -128px;
+}
+
+#hero6 {
+background-position: -244px 0;
+}
+
+.draggable {
+cursor: pointer;
+}
+
+.krb_zone{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+.krb1_zone{
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    top: 8.2vh;
+    left: 0.5vw;
+}
+.krb2_zone{
+    width: 210px;
+    height: 210px;
+    position: absolute;
+    top: 10.2vh;
+    left: 2vw;
+    opacity: 0;
+}
+.krb3_zone{
+    width: 110px;
+    height: 110px;
+    position: absolute;
+    top: 15.8vh;
+    left: 0;
+    padding-left: 79px;
+    opacity: 0;
+}
+#ech{
+    z-index: 1000;
+    position: absolute;
+}
+.msg{
+    display: flex;
+    position: absolute;
+    top: 12%;
+    left: 15vw;
+    background: greenyellow;
+    padding: 10px;
+    border-radius: 15px;
+    font-style: italic;
+    opacity: 0;
+}
+.show_msg{
+    opacity: 1;
+}
