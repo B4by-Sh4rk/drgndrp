@@ -36,6 +36,38 @@ function li_click(test_q, test_q_div) {
 
 /* test_1 */
 let thumb = slider.querySelector('.thumb');
+let h1Element = document.createElement('h1');
+h1Element.textContent = '0%';
+h1Element.style.textAlign =  'center';
+slider.appendChild(h1Element);
+
+// Функция для перемещения бегунка thumb
+function moveThumb(positionX) {
+    let newLeft = positionX - slider.getBoundingClientRect().left;
+    let rightEdge = slider.offsetWidth - thumb.offsetWidth;
+
+    if (newLeft < 10) {
+        newLeft = 10;
+    }
+    if (newLeft > rightEdge) {
+        newLeft = rightEdge;
+    }
+
+    thumb.style.left = newLeft + 'px';
+
+    let filledPercentage = Math.round((newLeft - 10) / (rightEdge - 10) * 100);
+
+    if (filledPercentage === 100) {
+        thumb.style.left = rightEdge - 10 + 'px'; // перемещаем бегунок на 10 пикселей левее при 100%, чтобы было ровно
+    }
+
+    h1Element.textContent = filledPercentage + '%';
+}
+
+// Обработчик клика на слайдере
+slider.addEventListener('click', function(event) {
+    moveThumb(event.clientX);
+});
 
 thumb.onmousedown = function (event) {
     event.preventDefault();
@@ -50,20 +82,7 @@ thumb.onmousedown = function (event) {
     let shiftX = event.clientX - thumb.getBoundingClientRect().left;
 
     function onMouseMove(event) {
-        let newLeft = event.clientX - shiftX - slider.getBoundingClientRect().left;
-        if (newLeft < 0) {
-            newLeft = 0;
-        }
-        let rightEdge = slider.offsetWidth - thumb.offsetWidth;
-        if (newLeft > rightEdge) {
-            newLeft = rightEdge;
-        }
-        thumb.style.transform = 'translateX(' + newLeft + 'px)';
-
-        if (thumb.style.transform == 'translateX(300px)') {
-            console.log('100%');
-        }
-
+        moveThumb(event.clientX - shiftX);
     }
 };
 
