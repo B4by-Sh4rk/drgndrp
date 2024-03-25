@@ -10,12 +10,17 @@ test_1_div.style.display = 'block';
 
 test_1.onclick = function () {
     li_click(test_1, test_1_div);
+    document.getElementById('ech').style.display = 'none';
+
 };
 test_2.onclick = function () {
     li_click(test_2, test_2_div);
+    document.getElementById('ech').style.display = 'none';
+
 };
 test_3.onclick = function () {
     li_click(test_3, test_3_div);
+    document.getElementById('ech').style.display = 'flex';
 };
 
 function li_click(test_q, test_q_div) {
