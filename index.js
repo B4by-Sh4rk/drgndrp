@@ -95,6 +95,33 @@ thumb.onmousedown = function (event) {
     }
 };
 
+/* для тача */
+thumb.ontouchstart = function (event) {
+    event.preventDefault();
+
+    document.addEventListener('touchmove', onTouchMove);
+    document.addEventListener('touchend', onTouchEnd);
+
+    function onTouchEnd() {
+        document.removeEventListener('touchend', onTouchEnd);
+        document.removeEventListener('touchmove', onTouchMove);
+    }
+
+    let shiftX = event.touches[0].clientX - thumb.getBoundingClientRect().left;
+
+    function onTouchMove(event) {
+        moveThumb(event.touches[0].clientX - shiftX);
+    }
+};
+
+function onTouchMove(event) {
+    moveThumb(event.touches[0].clientX);
+}
+
+slider.addEventListener('touchstart', function (event) {
+    moveThumb(event.touches[0].clientX);
+});
+
 
 
 
@@ -145,6 +172,55 @@ document.addEventListener('mousedown', function(e) {
     function onMouseUp(e) {
         document.removeEventListener('mousemove', onMouseMove);
         document.removeEventListener('mouseup', onMouseUp);
+    }
+});
+
+/* для тача */
+document.addEventListener('touchstart', function(e) {
+    const draggable = e.target;
+    if (!draggable.classList.contains('draggable')) {
+        return;
+    }
+
+    let shiftX = e.touches[0].clientX - draggable.getBoundingClientRect().left;
+    let shiftY = e.touches[0].clientY - draggable.getBoundingClientRect().top;
+
+    draggable.style.zIndex = 1000; 
+
+    document.addEventListener('touchmove', onTouchMove);
+    document.addEventListener('touchend', onTouchEnd);
+
+    function onTouchMove(e) {
+        const minX = window.pageXOffset;
+        const minY = window.pageYOffset;
+        const maxX = document.documentElement.clientWidth + window.pageXOffset - draggable.offsetWidth;
+        const maxY = document.documentElement.clientHeight + window.pageYOffset - draggable.offsetHeight;
+
+        let x = e.touches[0].pageX - shiftX;
+        let y = e.touches[0].pageY - shiftY;
+
+        if (x < minX) {
+            x = minX;
+        }
+        if (y < minY) {
+            y = minY;
+        }
+        if (x > maxX) {
+            x = maxX;
+        }
+        if (y > maxY) {
+            y = maxY;
+        }
+
+        draggable.style.left = x + 'px';
+        draggable.style.top = y + 'px';
+        draggable.style.position = 'absolute';
+
+    }
+
+    function onTouchEnd(e) {
+        document.removeEventListener('touchmove', onTouchMove);
+        document.removeEventListener('touchend', onTouchEnd);
     }
 });
 
